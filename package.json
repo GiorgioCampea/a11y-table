@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "host": "ng serve --host 192.168.1.148",
+    "server": "npx json-server ./db/db.json -s ./static",
+    "dev": "concurrently --kill-others \"npm run start\" \"npm run server\""
   },
   "private": true,
   "dependencies": {
@@ -28,6 +31,8 @@
     "@angular/cli": "^17.2.3",
     "@angular/compiler-cli": "^17.2.0",
     "@types/jasmine": "~5.1.0",
+    "concurrently": "^8.2.2",
+    "json-server": "^1.0.0-alpha.23",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

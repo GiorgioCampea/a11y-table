@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl: "https://prova"
+    apiUrl: "http://localhost:3000"
 };
