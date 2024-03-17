@@ -17,15 +17,21 @@ export const routes: Routes = [
         children: [
             {
                 path: 'normal',
-                component: NormalTableComponent
+                loadComponent:
+                    () => import('./components/normal-table/normal-table.component')
+                        .then(c => c.NormalTableComponent)
             },
             {
                 path: 'sortable',
-                component: SortableTableComponent
+                loadComponent:
+                    () => import('./components/sortable-table/sortable-table.component')
+                        .then(c => c.SortableTableComponent)
             },
             {
                 path: 'accessible-sortable',
-                component: AccessibleSortableTableComponent
+                loadComponent:
+                    () => import('./components/accessible-sortable-table/accessible-sortable-table.component')
+                        .then(c => c.AccessibleSortableTableComponent)
             },
         ]
     },
