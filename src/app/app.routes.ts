@@ -1,11 +1,6 @@
 import { Routes } from '@angular/router';
-import {
-    AccessibleSortableTableComponent
-} from './components/accessible-sortable-table/accessible-sortable-table.component';
 import { HomeComponent } from './components/home/home.component';
-import { NormalTableComponent } from './components/normal-table/normal-table.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { SortableTableComponent } from './components/sortable-table/sortable-table.component';
 
 export const routes: Routes = [
     {
