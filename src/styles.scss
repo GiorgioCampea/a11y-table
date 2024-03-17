@@ -1,1 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100%;
+}
+
+
+table thead {
+    .sortable,
+    .sorting_asc,
+    .sorting_asc_disabled,
+    .sorting_desc,
+    .sorting_desc_disabled {
+        cursor: pointer;
+        position: relative
+    }
+    .sortable:after,
+    .sortable:before,
+    .sorting_asc:after,
+    .sorting_asc:before,
+    .sorting_asc_disabled:after,
+    .sorting_asc_disabled:before,
+    .sorting_desc:after,
+    .sorting_desc:before,
+    .sorting_desc_disabled:after,
+    .sorting_desc_disabled:before {
+        position: absolute;
+        bottom: .5em;
+        display: block;
+        opacity: .3
+    }
+    
+    .sortable:before,
+    .sorting_asc:before,
+    .sorting_asc_disabled:before,
+    .sorting_desc:before,
+    .sorting_desc_disabled:before {
+        right: 1em;
+        content: "\f0de";
+        font-family: 'Font Awesome\ 5 Free';
+        font-weight: 900;
+        font-size: 1rem
+    }
+    
+    .sortable:after,
+    .sorting_asc:after,
+    .sorting_asc_disabled:after,
+    .sorting_desc:after,
+    .sorting_desc_disabled:after {
+        content: "\f0dd";
+        font-family: 'Font Awesome\ 5 Free';
+        font-weight: 900;
+        right: 16px;
+        font-size: 1rem
+    }
+    
+    .sorting_asc:before,
+    .sorting_desc:after {
+        opacity: 1
+    }
+    
+    .sorting_asc_disabled:before,
+    .sorting_desc_disabled:after {
+        opacity: 0
+    }
+}

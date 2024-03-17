@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
-import { CommonModule } from '@angular/common';
-import { NgOptimizedImage } from '@angular/common'
 import { PaginatorComponent } from '../../shared/components/paginator/paginator.component';
 
 @Component({
@@ -13,7 +12,7 @@ import { PaginatorComponent } from '../../shared/components/paginator/paginator.
     PaginatorComponent
   ],
   templateUrl: './normal-table.component.html',
-  styleUrl: './normal-table.component.scss'
+  encapsulation: ViewEncapsulation.None
 })
 export class NormalTableComponent {
   public currentPage = 1;

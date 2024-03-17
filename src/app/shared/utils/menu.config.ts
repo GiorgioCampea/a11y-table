@@ -5,16 +5,22 @@ export const MenuConfig = {
             name: 'Home',
         },
         {
-            path: '/normal',
-            name: 'Normal Table',
-        },
-        {
-            path: '/ordinable',
-            name: 'Ordinable Table',
-        },
-        {
-            path: '/accessible-ordinable',
-            name: 'Accessibile Ordinable',
+            path: '/table',
+            name: 'Table',
+            children: [
+                {
+                    path: 'normal',
+                    name: 'Normal Table',
+                },
+                {
+                    path: 'sortable',
+                    name: 'Sortable Table',
+                },
+                {
+                    path: 'accessible-sortable',
+                    name: 'Accessibile Sortable',
+                },
+            ]
         },
     ]
 }

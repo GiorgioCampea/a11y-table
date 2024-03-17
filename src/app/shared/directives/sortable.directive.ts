@@ -1,28 +1,30 @@
-import { Directive, ElementRef, HostBinding, Input, Renderer2 } from '@angular/core';
-import { SortableOrderType } from '../types/sortable-order.type';
+import { Directive, HostBinding, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appSortable]',
+  selector: 'th.sortable',
   standalone: true
 })
 export class SortableDirective {
-  @HostBinding('attr.aria-sortable') sortedValue: SortableOrderType | null = null;
+  @HostBinding('class') elementClass = '';
+  @HostBinding('attr.tabindex') tabindex = 0;
 
+  protected _isSorted: boolean = false;
   @Input() set isSorted(value: boolean) {
-    this.getSortedValue();
+    this._isSorted = value;
+    this.getSortedClass();
   }
-  private _order: SortableOrderType = 'asc';
-  @Input() set sortableOrder(value: SortableOrderType) {
-    this._order = value;
-    this.getSortedValue();
+  protected _isAsc: boolean = false;
+  @Input() set isAsc(value: boolean) {
+    this._isAsc = value;
+    this.getSortedClass();
   }
 
-  private getSortedValue() {
-    this.sortedValue = null;
-    if (!this.isSorted) {
+  private getSortedClass() {
+    this.elementClass = '';
+    if (!this._isSorted) {
       return;
-    }
-    this.sortableOrder = this._order;
+    } 
+    this.elementClass = `sorting_${this._isAsc ? 'asc' : 'desc'}`;
   }
 
 }

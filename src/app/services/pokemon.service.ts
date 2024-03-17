@@ -15,8 +15,12 @@ export class PokemonService {
 
   constructor(private httpClient: HttpClient, private pokemonConverter: PokemonConverter) { }
 
-  getAll(page: number, pageSize = 20): Observable<SearchDto<PokemonModel>> {
-    return this.httpClient.get<SearchDto<PokemonDto>>(`${environment.apiUrl}/${this.entityName}?_page=${page}&_per_page=${pageSize}`).pipe(
+  getAll(page: number, sortName = '', isAscending = true, pageSize = 20): Observable<SearchDto<PokemonModel>> {
+    let url = `${environment.apiUrl}/${this.entityName}?_page=${page}&_per_page=${pageSize}`;
+    if (sortName) {
+      url = `${url}&_sort=${isAscending ? '' : '-'}${sortName}`;
+    }
+    return this.httpClient.get<SearchDto<PokemonDto>>(url).pipe(
       delay(400),
       map(dto => ({
         ...dto,
