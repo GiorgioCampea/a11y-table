@@ -1,29 +1,36 @@
 <div class="table-responsive">
     @if (search$ | async; as searchResult) {
-        <table class="table">
-            <caption>List of users</caption>
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Photo</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Hp</th>
-                    <th scope="col">Defense</th>
-                    <th scope="col">Speed</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (entity of searchResult.data; track entity.id; let idx = $index) {
-                    <tr>
-                        <th scope="row">{{ entity.id }}</th>
-                        <td><img [ngSrc]="entity.imageUrl" width="150" height="150" [attr.fetchpriority]="idx === 0 ? 'high' : 'auto'"></td>
-                        <td>{{ entity.name?.english }}</td>
-                        <td>{{ entity.base?.hp }}</td>
-                        <td>{{ entity.base?.defense }}</td>
-                        <td>{{ entity.base?.speed }}</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <table class="table">
+        <caption>List of users</caption>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Name</th>
+                <th scope="col">Hp</th>
+                <th scope="col">Defense</th>
+                <th scope="col">Speed</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (entity of searchResult.data; track entity.id; let idx = $index) {
+            <tr>
+                <th scope="row">{{ entity.id }}</th>
+                <td><img [ngSrc]="entity.imageUrl" width="150" height="150"
+                        [attr.fetchpriority]="idx === 0 ? 'high' : 'auto'" [attr.alt]="entity.name?.english"></td>
+                <td>{{ entity.name?.english }}</td>
+                <td>{{ entity.base?.hp }}</td>
+                <td>{{ entity.base?.defense }}</td>
+                <td>{{ entity.base?.speed }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <app-paginator [currentPage]="currentPage" [totalPages]="searchResult.pages" (changePage)="changePage($event)" />
+    }
+    @else {
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
     }
 </div>
