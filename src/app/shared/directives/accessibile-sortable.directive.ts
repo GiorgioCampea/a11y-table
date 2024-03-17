@@ -1,34 +1,34 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import { SortableOrderType } from '../types/sortable-order.type';
 import { SortableDirective } from './sortable.directive';
 
 @Directive({
-  selector: '.accessible th.sortable',
+  selector: 'th.sortable.accessible',
   standalone: true,
   hostDirectives: [{
     directive: SortableDirective,
-    inputs: ['menuId'],
-    outputs: ['menuClosed'],
+    inputs: ['isSorted', 'isAsc'],
   }],
 })
 export class AccessibileSortableDirective {
-  @HostBinding('attr.class') sortedValue: SortableOrderType | null = null;
+  @HostBinding('attr.aria-sort') sortedValue: 'ascending' | 'descending' | null = null;
 
+  protected _isSorted: boolean = false;
   @Input() set isSorted(value: boolean) {
-    this.getSortedValue();
+    this._isSorted = value;
+    this.getSortValue();
   }
-  private _order: SortableOrderType = 'ascending';
-  @Input() set sortableOrder(value: SortableOrderType) {
-    this._order = value;
-    this.getSortedValue();
+  protected _isAsc: boolean = false;
+  @Input() set isAsc(value: boolean) {
+    this._isAsc = value;
+    this.getSortValue();
   }
 
-  private getSortedValue() {
+  private getSortValue() {
     this.sortedValue = null;
-    if (!this.isSorted) {
+    if (!this._isSorted) {
       return;
-    }
-    this.sortableOrder = this._order;
+    } 
+    this.sortedValue = this._isAsc ? 'ascending' : 'descending';
   }
 
 }

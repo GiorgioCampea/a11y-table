@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MenuConfig } from '../../utils/menu.config';
 import { RouterModule } from '@angular/router';
+import { MenuConfig } from '../../utils/menu.config';
 
 @Component({
   selector: 'app-header',

@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment.development';
+import { Injectable } from '@angular/core';
 import { Observable, delay, map } from 'rxjs';
-import { PokemonDto } from '../dtos/pokemon.dto';
-import { PokemonModel } from '../models/pokemon';
+import { environment } from '../../environments/environment.development';
 import { PokemonConverter } from '../converters/pokemon.converter.service';
+import { PokemonDto } from '../dtos/pokemon.dto';
 import { SearchDto } from '../dtos/search.dto';
+import { PokemonModel } from '../models/pokemon';
 
 @Injectable({
   providedIn: 'root'
