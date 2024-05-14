@@ -1,40 +1,39 @@
 <div class="table-responsive">
     <table class="table">
         <caption>
-            Lista di Pokemon
+            {{ description }}
             <span class="visually-hidden" aria-live="polite">
                 {{ sortMessage }}
             </span>
         </caption>
         <thead>
             <tr>
-                @for (column of tableColumn; track idx; let idx = $index) {
+                @for (column of tableColumn; track $index) {
                 @if (column.sortable) {
-                <th scope="col" class="sortable accessible" [isSorted]="orderColumn === column.property" [id]="'th_' + idx"
-                    [isAsc]="isAscending"> <button (click)="changeSort(column.property)"> {{ column.name }} </button></th>
+                <th scope="col" class="sortable accessible" [isSorted]="orderColumn === column.property"
+                    [isAsc]="isAscending" (click)="changeSort(column.property)"> {{ column.name }} </th>
                 }
                 @else {
-                <th scope="col" [id]="'th_' + idx"> {{ column.name }} </th>
+                <th scope="col"> {{ column.name }} </th>
                 }
                 }
             </tr>
         </thead>
         <tbody>
-            @if (search$ | async; as searchResult) {
-            @for (entity of searchResult.data; track entity.id; let idxRow = $index) {
+            @for (entity of elements; track entity.id; let idx = $index) {
             <tr>
-                @for (column of tableColumn; track idx; let idx = $index) {
+                @for (column of tableColumn; track $index) {
                     @if (column.main) {
-                    <th scope="row" [id]="'th_row_' + idxRow">{{ entity | entityPropertyValue : column.property }}</th>
+                    <th scope="row">{{ entity | entityPropertyValue : column.property }}</th>
                     }
                     @else {
                         @switch (column.type) {
                             @case ('image') {
                             <td><img [ngSrc]="entity | entityPropertyValue : column.property : true" width="150" height="150"
-                                    [attr.fetchpriority]="idxRow === 0 ? 'high' : 'auto'" [attr.alt]="entity.name?.english"></td>
+                                    [attr.fetchpriority]="idx === 0 ? 'high' : 'auto'" [attr.alt]="entity.name?.english"></td>
                             }
                             @case ('string') {
-                            <td [headers]="'th_' + idx + ' th_row_' + idxRow">{{ entity | entityPropertyValue : column.property }}</td>
+                            <td>{{ entity | entityPropertyValue : column.property }}</td>
                             }
                             @default {
                             <td></td>
@@ -43,7 +42,6 @@
                     }
                 }
             </tr>
-            }
             }
             @else {
             <div class="spinner-border" role="status">

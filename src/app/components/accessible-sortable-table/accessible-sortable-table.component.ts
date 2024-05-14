@@ -21,25 +21,26 @@ import { EntityPropertyValuePipe } from '../../shared/pipes/entity-property-valu
 export class AccessibleSortableTableComponent {
   public currentPage = 1;
   public search$ = this.pokemonService.getAll(this.currentPage);
+  sortMessage = 'Non ordinata';
   orderColumn = '';
   isAscending = true;
   tableColumn = [
     {
       name: '#',
       property: 'id',
-      type: 'string',
-      main: true
+      type: 'string'
     },
     {
-      name: 'Photo',
+      name: 'Immagine',
       property: 'imageUrl',
       type: 'image'
     },
     {
-      name: 'Name',
+      name: 'Nome',
       property: 'name.english',
       type: 'string',
-      sortable: true
+      sortable: true,
+      main: true
     },
     {
       name: 'Hp',
@@ -48,13 +49,13 @@ export class AccessibleSortableTableComponent {
       sortable: true
     },
     {
-      name: 'Defense',
+      name: 'Difesa',
       property: 'base.defense',
       type: 'string',
       sortable: true
     },
     {
-      name: 'Speed',
+      name: 'Velocità',
       property: 'base.speed',
       type: 'string',
       sortable: true
@@ -74,6 +75,7 @@ export class AccessibleSortableTableComponent {
       this.isAscending = true;
     }
     this.orderColumn = columnName;
+    this.sortMessage = `Ordinata per ${this.tableColumn.find((column) => column.property === columnName)?.name.toLowerCase() } in modalità ${this.isAscending ? 'crescente' : 'decrescente'}`;
     this.search$ = this.pokemonService.getAll(this.currentPage, columnName, this.isAscending);
   }
 }

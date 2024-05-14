@@ -11,6 +11,7 @@ import { SortableDirective } from './sortable.directive';
 })
 export class AccessibileSortableDirective {
   @HostBinding('attr.aria-sort') sortedValue: 'ascending' | 'descending' | null = null;
+  @HostBinding('attr.tabindex') tabindex = null;
 
   protected _isSorted: boolean = false;
   @Input() set isSorted(value: boolean) {
@@ -28,6 +29,8 @@ export class AccessibileSortableDirective {
     if (!this._isSorted) {
       return;
     } 
+    if (this._isAsc) {
+    }
     this.sortedValue = this._isAsc ? 'ascending' : 'descending';
   }
 

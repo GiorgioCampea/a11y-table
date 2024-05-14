@@ -6,13 +6,85 @@ body {
 
 
 table thead {
+    .sortable button,
+    .sorting_asc button,
+    .sorting_asc_disabled button,
+    .sorting_desc button,
+    .sorting_desc_disabled button {
+        cursor: pointer;
+        position: relative;
+        border: none;
+        height: 100%;
+        width: 100%;
+        text-align: left;
+        background: none;
+    }
+    .sortable button:after,
+    .sortable button:before,
+    .sorting_asc button:after,
+    .sorting_asc button:before,
+    .sorting_asc_disabled button:after,
+    .sorting_asc_disabled button:before,
+    .sorting_desc button:after,
+    .sorting_desc button:before,
+    .sorting_desc_disabled button:after,
+    .sorting_desc_disabled button:before {
+        position: absolute;
+        bottom: .5em;
+        display: block;
+        opacity: .3;
+        top: 0px;
+        right: 0
+    }
+    
+    .sortable button:before,
+    .sorting_asc button:before,
+    .sorting_asc_disabled button:before,
+    .sorting_desc button:before,
+    .sorting_desc_disabled button:before {
+        right: 1em;
+        content: "\f0de";
+        font-family: 'Font Awesome\ 5 Free';
+        font-weight: 900;
+        font-size: 1rem
+    }
+    
+    .sortable button:after,
+    .sorting_asc button:after,
+    .sorting_asc_disabled button:after,
+    .sorting_desc button:after,
+    .sorting_desc_disabled button:after {
+        content: "\f0dd";
+        font-family: 'Font Awesome\ 5 Free';
+        font-weight: 900;
+        right: 16px;
+        font-size: 1rem
+    }
+    
+    .sorting_asc button:before,
+    .sorting_desc button:after {
+        opacity: 1
+    }
+    
+    .sorting_asc_disabled button:before,
+    .sorting_desc_disabled button:after {
+        opacity: 0
+    }
+}
+
+table.normal thead {
     .sortable,
     .sorting_asc,
     .sorting_asc_disabled,
     .sorting_desc,
     .sorting_desc_disabled {
         cursor: pointer;
-        position: relative
+        position: relative;
+        height: 100%;
+        width: 100%;
+        text-align: left;
+        background: none;
+        padding-right: 1.75rem;
     }
     .sortable:after,
     .sortable:before,
@@ -27,7 +99,9 @@ table thead {
         position: absolute;
         bottom: .5em;
         display: block;
-        opacity: .3
+        opacity: .3;
+        top: .5rem;
+        right: 0;
     }
     
     .sortable:before,

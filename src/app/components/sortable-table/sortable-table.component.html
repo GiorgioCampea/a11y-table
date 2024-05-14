@@ -1,6 +1,6 @@
 <div class="table-responsive">
     @if (search$ | async; as searchResult) {
-    <table class="table">
+    <table class="table normal">
         <caption>List of users</caption>
         <thead>
             <tr>
@@ -13,6 +13,7 @@
                             [isAsc]="isAscending"
                             (click)="changeSort(column.property)"
                             > {{ column.name }} </th>
+                            <!-- (keyup.enter)="changeSort(column.property)" -->
                     }
                     @else {
                         <th scope="col"> {{ column.name }} </th>

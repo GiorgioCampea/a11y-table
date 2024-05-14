@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   a11ytable:
-    image: a11ytable
+    image: mockserver
     build:
       context: .
       dockerfile: ./Dockerfile
